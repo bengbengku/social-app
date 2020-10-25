@@ -67,6 +67,7 @@ app.post("/signup", (req, res) => {
 
   // Validasi data //
 
+  let token, userId;
   db.doc(`/user/${newUser.handle}`)
     .get()
     .then((doc) => {
@@ -79,9 +80,20 @@ app.post("/signup", (req, res) => {
       }
     })
     .then((data) => {
+      userId = data.user.uid;
       return data.user.getIdToken();
     })
     .then((token) => {
+      token = token;
+      const userCredentials = {
+        handle: newUser.handle,
+        email: newUser.email,
+        createdAt: new Date().toISOString(),
+        userId,
+      };
+      return db.doc(`/users/${newUser.handle}`).set(userCredentials);
+    })
+    .then(() => {
       return res.status(201).json({ token });
     })
     .catch((err) => {
