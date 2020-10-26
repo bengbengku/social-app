@@ -13,6 +13,8 @@ app.post("/scream", FBAuth, postOneScream);
 // Signup & Login route
 app.post("/signup", signup);
 app.post("/login", login);
+
+// Upload image route
 app.post("/user/image", FBAuth, uploadImage);
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
