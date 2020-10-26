@@ -36,10 +36,17 @@ app.get("/screams", (req, res) => {
       });
       return res.json(screams);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: err.code });
+    });
 });
 
 app.post("/scream", (req, res) => {
+  if (req.body.body.trim() === "") {
+    return res.status(400).json({ body: "Body must not be empty" });
+  }
+
   const newScream = {
     body: req.body.body,
     userHandle: req.body.userHandle,
@@ -99,7 +106,7 @@ app.post("/signup", (req, res) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        return res.status(400).json({ handle: "this handle is already taken" });
+        return res.status(400).json({ handle: "This handle is already taken" });
       } else {
         return firebase
           .auth()
