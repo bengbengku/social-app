@@ -42,7 +42,11 @@ app.get("/screams", (req, res) => {
     });
 });
 
-app.post("/scream", (req, res) => {
+const FBAuth = (req, res, next) => {
+  
+}
+
+app.post("/scream", FBAuth, (req, res) => {
   if (req.body.body.trim() === "") {
     return res.status(400).json({ body: "Body must not be empty" });
   }
