@@ -2,7 +2,7 @@ const { db, admin } = require("../util/admin");
 const config = require("../util/config");
 const firebase = require("firebase");
 firebase.initializeApp(config);
-const { validateSignupData, validateLoginData } = require("../util/validators");
+const { validateSignupData, validateLoginData, reduceUserDetails } = require("../util/validators");
 
 exports.signup = (req, res) => {
   const newUser = {
@@ -91,6 +91,10 @@ exports.login = (req, res) => {
     });
 };
 
+exports.addUserDetails = (req, res) => {
+  let userDetails = reduceUserDetails(req.body);
+}
+
 exports.uploadImage = (req, res) => {
   const BusBoy = require("busboy");
   const path = require("path");
@@ -143,3 +147,4 @@ exports.uploadImage = (req, res) => {
   });
   busboy.end(req.rawBody);
 };
+
