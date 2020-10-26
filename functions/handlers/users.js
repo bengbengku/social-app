@@ -121,7 +121,7 @@ exports.uploadImage = (req, res) => {
     admin
       .storage()
       .bucket()
-      .upload(imageToBeUploaded, filepath, {
+      .upload(imageToBeUploaded.filepath, {
         resumable: false,
         metadata: {
           metadata: {
@@ -141,4 +141,5 @@ exports.uploadImage = (req, res) => {
         return res.status(500).json({ error: err.code });
       });
   });
+  busboy.end(req.rawBody);
 };
