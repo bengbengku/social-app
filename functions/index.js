@@ -12,15 +12,16 @@ const {
 
 //Screams route
 app.get("/screams", getAllScreams);
-app.get("/user", FBAuth, getAuthenticatedUser);
 app.post("/scream", FBAuth, postOneScream);
-app.post("/user", FBAuth, addUserDetails);
+app.get("/scream/:screamId", getScream);
 
 // Signup & Login route
 app.post("/signup", signup);
 app.post("/login", login);
 
-// Upload image route
+// User route
+app.get("/user", FBAuth, getAuthenticatedUser);
+app.post("/user", FBAuth, addUserDetails);
 app.post("/user/image", FBAuth, uploadImage);
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
