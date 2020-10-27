@@ -21,3 +21,27 @@ let db = {
     },
   ],
 };
+
+const userDetails = {
+  // Redux
+  credentials: {
+    userId: "ixla3jg3pIeT4B2uthHFZFlVZUI2",
+    email: "user@gmail.com",
+    handle: "user",
+    createdAt: "2020-10-25T17:22:04.404Z",
+    imageUrl: "image/jhsadhshdj/ksjfhjhsa",
+    bio: "Hello, saya user selamat datang di bio saya",
+    website: "https://user.com",
+    location: "Indonesia, IDN",
+  },
+  likes: [
+    {
+      userHandle: "user",
+      screamId: "DeYRbXacN7Jr3llZsh0k",
+    },
+    {
+      userHandle: "user",
+      screamId: "EoLgIzWryYPH4B8YgKAb",
+    },
+  ],
+};
