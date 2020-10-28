@@ -33,6 +33,7 @@ let db = {
       recipient: "user",
       sender: "jhon",
       read: "true | false",
+      screamId: 'aishdkjahsfkdsfsa',
       type: "like | comment",
       createdAt: "2020-10-25T16:14:29.652Z",
     },
