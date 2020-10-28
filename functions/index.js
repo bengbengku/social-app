@@ -19,6 +19,8 @@ const {
   uploadImage,
   addUserDetails,
   getAuthenticatedUser,
+  getUserDetails,
+  markNotificationsRead,
 } = require("./handlers/users");
 
 //Screams route
@@ -38,6 +40,8 @@ app.post("/login", login);
 app.get("/user", FBAuth, getAuthenticatedUser);
 app.post("/user", FBAuth, addUserDetails);
 app.post("/user/image", FBAuth, uploadImage);
+app.get("/user/:handle", getUserDetails);
+app.post("/notifications", FBAuth, markNotificationsRead);
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
 
