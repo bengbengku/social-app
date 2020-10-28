@@ -45,7 +45,8 @@ exports.createNotificationOnLike = functions
   .region("europe-west1")
   .firestore.document("likes/{id}")
   .onCreate((snapshot) => {
-    db.document(`/screams/${snapshot.data().screamId}`)
+    return db
+      .doc(`/screams/${snapshot.data().screamId}`)
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -72,7 +73,8 @@ exports.deleteNotificationUnLike = functions
   .region("europe-west1")
   .firestore.document("likes/{id}")
   .onDelete((snapshot) => {
-    db.doc(`/notifications/${snapshot.id}`)
+    return db
+      .doc(`/notifications/${snapshot.id}`)
       .delete()
       .then(() => {
         return;
@@ -87,7 +89,8 @@ exports.createNotificationOnComment = functions
   .region("europe-west1")
   .firestore.document("comments/{id}")
   .onCreate((snapshot) => {
-    db.document(`/screams/${snapshot.data().screamId}`)
+    return db
+      .doc(`/screams/${snapshot.data().screamId}`)
       .get()
       .then((doc) => {
         if (doc.exists) {
