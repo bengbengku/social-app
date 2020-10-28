@@ -109,6 +109,14 @@ exports.addUserDetails = (req, res) => {
     });
 };
 
+exports.getUserDetails = (req, res) => {
+
+}
+
+exports.markNotificationsRead = (req, res) => {
+  
+}
+
 exports.getAuthenticatedUser = (req, res) => {
   let userData = {};
 
